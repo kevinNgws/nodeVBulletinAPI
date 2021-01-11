@@ -359,7 +359,7 @@ class VBApi {
                  badlogin_strikes - Username or Password incorrect. Login failed. You have used {X} out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.
                  */
         let error = that.constructor.parseErrorMessage(response);
-        if (response.session) {
+        if (response.sessionhash) {
           // that.userSessionVars = response.session;
           // if (error === "redirect_login") {
           //   that.userSessionVars.username = options.username;

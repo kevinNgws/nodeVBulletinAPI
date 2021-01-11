@@ -2,7 +2,7 @@
   "name": "node-vbulletin5-api",
   "author": "Kevin",
   "desciprtion": "nodejs API interface to communicate with VBulletin servers",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "license": "GPL-3.0",
   "private": false,
   "engines": {

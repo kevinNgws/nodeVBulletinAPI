@@ -113,13 +113,13 @@ class Thread {
           params: options,
         });
         let possibleError = that.constructor.parseErrorMessage(response);
-        //success is errormessgae 'redirect_postthanks'
+        //success is errormessage 'redirect_postthanks'
         //reports threadid and postid
         if (
           possibleError === "redirect_postthanks" &&
-          response.hasOwnProperty("show")
+          response.response.hasOwnProperty("show")
         ) {
-          resolve(response.show);
+          resolve(response.response.show);
         } else {
           reject(possibleError || response);
         }
@@ -149,19 +149,14 @@ class Thread {
       let thread = null;
       try {
         let response = await that.callMethod({
-          method: "showthread",
+          method: "vb4_showthread.call",
           params: options,
         });
         if (response && response.hasOwnProperty("response")) {
-          thread = new Thread(response.response);
+          resolve(response.response.thread);
         }
       } catch (e) {
         reject(e);
-      }
-      if (thread !== null) {
-        resolve(thread);
-      } else {
-        reject();
       }
     });
   }

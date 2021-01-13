@@ -320,7 +320,9 @@ class VBApi {
   async login(username, password, options) {
     options = options || {};
     options.username = username || options.username || "";
-    options.password = password || options.password || ""; //md5(password || options.password || "");
+    //options.password = password || options.password || "";
+    //md5(password || options.password || "");
+    options.password = md5(password);
     return await this.loginMD5("", "", options);
   }
 
@@ -336,11 +338,11 @@ class VBApi {
    * @fulfill {UserVars}
    * @reject {string} - Error Reason. Expects:
    */
-  async loginMD5(username, password, options) {
+  async loginMD5(username, md5password, options) {
     let that = this;
     options = options || {};
     options.username = username || options.username || {};
-    options.password = password || options.password || {};
+    options.md5password = md5password || options.password || {};
     return new Promise(async function (resolve, reject) {
       try {
         let response = await that.callMethod({
@@ -350,7 +352,7 @@ class VBApi {
             // vb_login_username: options.username || "",
             // vb_login_md5password: options.password || "",
             username: options.username || "",
-            password: options.password || "",
+            md5password: options.md5password || "",
           },
         });
         /**
